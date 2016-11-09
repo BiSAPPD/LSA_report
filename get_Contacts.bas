@@ -42,11 +42,10 @@ For f_year = cd_StartYear to cd_ActualYear
         For f_brnd = 0 To UBound(ar_Brand)
             nm_brand = ar_Brand(f_brnd)
                 
-                patch = myLib.patch_history_TR(nm_brand, cd_ActualYear, f_year, cd_ActualMonth, f_mnth)
-                actTR = myLib.OpenFile(patch, nm_ShOutData)
-                num_LastRow = myLib.getLastRow
-                num_LastColum = myLib.getLastColumn
-            
+            patch = myLib.patch_history_TR(nm_brand, cd_ActualYear, f_year, cd_ActualMonth, f_mnth)
+            actTR = myLib.OpenFile(patch, nm_ShOutData)
+            num_LastRow = myLib.getLastRow
+            num_LastColum = myLib.getLastColumn
             
             For f_rw = 2 To num_LastRow
                 nm_Mreg = myLib.getMregWhitoutBrand(myLib.fixError(Cells(f_rw, 10)))
