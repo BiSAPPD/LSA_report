@@ -1,13 +1,13 @@
 VERSION 1.0 CLASS
 BEGIN
-  MultiUse = -1 
+  MultiUse = -1  'True
 END
-
 Attribute VB_Name = "Seminars"
 Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = False
 Attribute VB_Exposed = False
+
 Option Explicit
 
 Private colSeminars As Collection
@@ -35,7 +35,7 @@ Public Sub Remove(Index As Variant)
 End Sub
 
 Public Property Get Item(Index As Variant) As SeminarUsers
-    Attribute Item.VB_UserMemId = 0
+Attribute Item.VB_UserMemId = 0
     Set Item = colSeminars.Item(Index)
 End Property
 
@@ -48,25 +48,26 @@ Public Sub Clear()
 End Sub
 
 Public Sub FillFromSheet(wks As Worksheet)
-    Const cFirstRow = 2, cPersonName = 1, cEduDate = 12, cSeminarName = 14, cEducater = 11
+    Const cFirstRow = 2, cName = 1, cEduDate = 12, cSeminarName = 14, cEducater = 11, cEduType = 15
 
     Dim i As Long, obj As SeminarUsers
     With wks
         For i = cFirstRow To .Cells(Rows.Count, 1).End(xlUp).Row
             Set obj = New SeminarUsers
-            obj.PersonName = .Cells(i, cPersonName)
+            obj.PersonName = Trim(.Cells(i, cName))
             obj.EduDate = .Cells(i, cEduDate)
-            obj.SeminarName = LCase(.Cells(i, cSeminarName))
-            obj.Educater = .Cells(i, cEducater)
-
+            obj.SeminarName = Trim(LCase(.Cells(i, cSeminarName)))
+            obj.Educater = Trim(.Cells(i, cEducater))
+            obj.EducationType = .Cells(i, cEduType)
+            
             Me.Add obj
         Next
     End With
 End Sub
 
 Public Function FilterBySeminar(str As String) As SeminarUsers
-    Dim smr As seminars, smr_type As SeminarUsers
-    Set smr = New seminars
+    Dim smr As Seminars, smr_type As SeminarUsers
+    Set smr = New Seminars
 
     For Each smr_type In Me
         If smr_type.SeminarName = str Then smr.Add smr_type
@@ -76,8 +77,8 @@ Public Function FilterBySeminar(str As String) As SeminarUsers
 End Function
 
 Public Function FilterByNameLike(str As String) As SeminarUsers
-    Dim smr As seminars, smr_type As SeminarUsers
-    Set smr = New seminars
+    Dim smr As Seminars, smr_type As SeminarUsers
+    Set smr = New Seminars
 
     For Each smr_type In Me
         If smr_type.Name Like str Then smr.Add smr_type

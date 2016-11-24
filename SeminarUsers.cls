@@ -1,6 +1,6 @@
 VERSION 1.0 CLASS
 BEGIN
-  MultiUse = -1 
+  MultiUse = -1  'True
 END
 Attribute VB_Name = "SeminarUsers"
 Attribute VB_GlobalNameSpace = False
@@ -13,8 +13,7 @@ Public PersonName As String
 Public EduDate As Date
 Public SeminarName As String
 Public Educater As String
-
-
+Public EducationType As String
 
 
 

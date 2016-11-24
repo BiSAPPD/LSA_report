@@ -1,6 +1,6 @@
 VERSION 1.0 CLASS
 BEGIN
-  MultiUse = -1  
+  MultiUse = -1  'True
 END
 Attribute VB_Name = "UserEducated"
 Attribute VB_GlobalNameSpace = False
@@ -31,7 +31,9 @@ Public Brand_Other As String
 Public TeamType As String
 Public MegaReg As String
 Public EduDate As Date
+Public EducationType As String
 Public diffEduDate As Integer
+Public SeminarName As String
 Public Educater As String
 Public EducatedStatus As String
 Public Seminar1 As String
